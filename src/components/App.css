@@ -1,0 +1,113 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: rgb(255, 255, 255);
+}
+
+.mainDiv {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  flex-wrap: wrap;
+  background-color: rgb(230, 230, 230);
+  padding-bottom: 10px;
+}
+
+.personCard {
+  display: flex;
+  margin: 10px;
+  padding: 30px;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.delButton {
+  display: inline-block;
+  outline: 0;
+  cursor: pointer;
+  text-align: center;
+  border: 1px solid #000000;
+  padding: 10px 24px;
+  margin: 0 50px;
+  min-height: 14px;
+  min-width: 14px;
+  color: #202223;
+  background: #ffffff;
+  border-radius: 4px;
+  font-size: 14px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.drawButton,
+.addButton {
+  display: inline-block;
+  outline: 0;
+  cursor: pointer;
+  text-align: center;
+  border: 1px solid #000000;
+  padding: 10px 24px;
+  margin: 0 50px;
+  min-height: 14px;
+  min-width: 14px;
+  color: #202223;
+  background: #ffffff;
+  border-radius: 4px;
+  font-size: 14px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.drawButton:hover,
+.addButton:hover {
+  background: #cdffba;
+  outline: 1px solid transparent;
+  transition: 0.7s;
+}
+
+.delButton:hover {
+  background: #ff5b5b;
+  outline: 1px solid transparent;
+  transition: 0.7s;
+}
+
+.buttonsContainer {
+  text-align: center;
+}
+
+
+h2 {
+  padding: 20px;
+  border-bottom: 2px solid black;
+}
+
+h4 {
+  margin-bottom: 10px;
+}
+
+p {
+  margin-bottom: 10px;
+}
+
+label {
+  padding: 10px;
+  margin-bottom: 10px;
+  margin-right: 200px;
+}
+
+input {
+  margin-left: 10px;
+  padding: 3px;
+}
+
+
+
