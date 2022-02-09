@@ -3,12 +3,50 @@ import "./PeopleList";
 import "./App.css";
 import PeopleList from "./PeopleList";
 
+
+const API = "https://randomuser.me/api/?results=21";
+
 class App extends React.Component {
   state = {
     personData: "",
     personEmail: "",
     people: [],
+    drawnPeople: [],
   };
+
+  
+
+  componentDidMount () {
+    fetch(API)
+      .then(response => response.json())
+      .then(data => {
+        const users = data.results;
+
+        this.setState((prevState) => ({
+          drawnPeople: prevState.drawnPeople.concat(users)
+        }))
+      })
+  }
+
+  handleDrawPerson = () => {
+    let drawnPerson = [...this.state.drawnPeople] 
+
+    const randomNumber = Math.floor(Math.random() * this.state.drawnPeople.length);
+
+    drawnPerson = drawnPerson[randomNumber]
+
+    const newPerson = {
+      id: this.state.people.length + 1,
+      personData: `${drawnPerson.name.title} ${drawnPerson.name.first} ${drawnPerson.name.last}`,
+      // personData: drawnPerson.name.first + drawnPerson.name.last,
+      personEmail: drawnPerson.email,
+    }
+
+    this.setState((prevState) => ({
+      people: prevState.people.concat(newPerson)
+    }))
+
+  }
 
   handlePersonDataChange = (event) => {
     this.setState({
@@ -83,7 +121,7 @@ class App extends React.Component {
             <button className="addButton" onClick={this.handleAddPerson}>
               Add person
             </button>
-            <button className="drawButton">Draw</button>
+            <button className="drawButton" onClick={this.handleDrawPerson}>Draw a person</button>
           </div>
           <PeopleList
             people={this.state.people}
