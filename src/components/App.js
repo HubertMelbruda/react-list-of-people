@@ -6,39 +6,37 @@ import PeopleList from "./PeopleList";
 
 const API = "https://randomuser.me/api/?results=21";
 
+
 class App extends React.Component {
   state = {
     personData: "",
     personEmail: "",
     people: [],
-    drawnPeople: [],
   };
 
-  
+  apiData = {
+    drawnPeople: [],
+  }
 
   componentDidMount () {
     fetch(API)
       .then(response => response.json())
       .then(data => {
         const users = data.results;
-
-        this.setState((prevState) => ({
-          drawnPeople: prevState.drawnPeople.concat(users)
-        }))
+        users.map(user => this.apiData.drawnPeople.push(user))
       })
   }
 
   handleDrawPerson = () => {
-    let drawnPerson = [...this.state.drawnPeople] 
+    let drawnPerson = [...this.apiData.drawnPeople] 
 
-    const randomNumber = Math.floor(Math.random() * this.state.drawnPeople.length);
+    const randomNumber = Math.floor(Math.random() * this.apiData.drawnPeople.length);
 
     drawnPerson = drawnPerson[randomNumber]
-
+    
     const newPerson = {
       id: this.state.people.length + 1,
       personData: `${drawnPerson.name.title} ${drawnPerson.name.first} ${drawnPerson.name.last}`,
-      // personData: drawnPerson.name.first + drawnPerson.name.last,
       personEmail: drawnPerson.email,
     }
 
@@ -96,7 +94,7 @@ class App extends React.Component {
     return (
       <>
         <div className="mainDiv">
-          <h2>Enter the data</h2>
+          <h2>Enter your data</h2>
           <label>
             Name and surname:
             <input
@@ -110,8 +108,9 @@ class App extends React.Component {
           <label>
             e-mail:
             <input
-              name="personEmail"
               type="email"
+              id="email"
+              name="personEmail"
               value={this.state.personEmail}
               placeholder="johndoe@gmail.com"
               onChange={this.handlePersonEmailChange}
