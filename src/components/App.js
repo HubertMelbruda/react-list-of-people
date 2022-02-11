@@ -3,9 +3,7 @@ import "./PeopleList";
 import "./App.css";
 import PeopleList from "./PeopleList";
 
-
 const API = "https://randomuser.me/api/?results=21";
-
 
 class App extends React.Component {
   state = {
@@ -25,14 +23,13 @@ class App extends React.Component {
         const users = data.results;
         users.map(user => this.apiData.drawnPeople.push(user))
       })
+      .catch(error => console.log(error))
   }
 
   handleDrawPerson = () => {
-    let drawnPerson = [...this.apiData.drawnPeople] 
+    const randomNumber = Math.floor(Math.random() * this.apiData.drawnPeople.length)
 
-    const randomNumber = Math.floor(Math.random() * this.apiData.drawnPeople.length);
-
-    drawnPerson = drawnPerson[randomNumber]
+    const drawnPerson = this.apiData.drawnPeople[randomNumber]
     
     const newPerson = {
       id: this.state.people.length + 1,
@@ -43,7 +40,6 @@ class App extends React.Component {
     this.setState((prevState) => ({
       people: prevState.people.concat(newPerson)
     }))
-
   }
 
   handlePersonDataChange = (event) => {
@@ -59,10 +55,10 @@ class App extends React.Component {
   };
 
   handleAddPerson = () => {
-    const people = [...this.state.people];
+    const people = [...this.state.people]; 
 
     const person = {
-      id: people.length + 1,
+      id: this.state.people.length + 1,
       personData: this.state.personData,
       personEmail: this.state.personEmail,
     };
@@ -70,7 +66,7 @@ class App extends React.Component {
     if (this.state.personData === "" || this.state.personEmail === "") {
       alert("Please fill in all fields.");
     } else {
-      people.push(person);
+      people.push(person); 
     }
 
     this.setState({
@@ -81,12 +77,8 @@ class App extends React.Component {
   };
 
   handleDeletePerson = (id) => {
-    let people = [...this.state.people];
-
-    people = people.filter((person) => id !== person.id);
-
     this.setState({
-      people,
+      people: this.state.people.filter((person) => id !== person.id),
     });
   };
 
