@@ -1,5 +1,4 @@
 import React from "react";
-// import './PersonCard.css'
 
 const PersonCard = (props) => {
   return (
